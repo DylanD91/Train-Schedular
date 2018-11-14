@@ -1,0 +1,35 @@
+panel{
+	width: 100%;
+}
+
+.jumbotron{
+	background-color: #ffe6ff;
+	
+	color: #000000;
+	padding-top: 1%;
+	padding-bottom: 2%;
+}
+
+.panel-heading{
+	padding-top: 0.25%;
+}
+
+.panel-success .panel-heading {
+    color: #000000;
+    background-color: #ffe6ff;
+    border-color:  #ffe6ff;
+}
+
+.text-success {
+    color: #000000;
+}
+
+.btn-success {
+    color: #000000;
+    background-color: #b3e6ff;
+    border-color:  #b3e6ff;
+}
+
+.panel-success {
+    border-color: #ffe6ff;
+}
