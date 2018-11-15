@@ -1,5 +1,6 @@
 $(document).ready(function(){
     // Initialize Firebase
+
    var config = {
      apiKey: "AIzaSyDp37mSys0kAlTxH1Ax33vtHrvPsHK9390",
      authDomain: "train-schedular-4b23a.firebaseapp.com",
@@ -10,10 +11,10 @@ $(document).ready(function(){
    };
    firebase.initializeApp(config);
   
-      // A variable to reference the database.
+    //   Database variable
       var database = firebase.database();
   
-      // Variables for the onClick event
+      // The variables for onClick events
       var name;
       var destination;
       var firstTrain;
@@ -21,7 +22,7 @@ $(document).ready(function(){
   
       $("#add-train").on("click", function() {
           event.preventDefault();
-          // Storing and retreiving new train data
+          // This is where we store and retrieve new data from Trains
           name = $("#train-name").val().trim();
           destination = $("#destination").val().trim();
           firstTrain = $("#first-train").val().trim();
@@ -43,22 +44,22 @@ $(document).ready(function(){
           var minAway;
           // Change year so first train comes before now
           var firstTrainNew = moment(childSnapshot.val().firstTrain, "hh:mm").subtract(1, "years");
-          // Difference between the current and firstTrain
+          // Difference between the first and current trains
           var diffTime = moment().diff(moment(firstTrainNew), "minutes");
           var remainder = diffTime % childSnapshot.val().frequency;
-          // Minutes until next train
+          // How many minutes are left until the next train
           var minAway = childSnapshot.val().frequency - remainder;
-          // Next train time
+          // This is where the next train time is
           var nextTrain = moment().add(minAway, "minutes");
           nextTrain = moment(nextTrain).format("hh:mm");
   
-          $("#add-row").append("<tr><td>" + childSnapshot.val().name +
+          $("#add-row").append("<tr>"+ childSnapshot.val().name + "</tr>", 
                   "</td><td>" + childSnapshot.val().destination +
                   "</td><td>" + childSnapshot.val().frequency +
-                  "</td><td>" + nextTrain + 
-                  "</td><td>" + minAway + "</td></tr>");
+                  "</td><td>" + childSnapshot.val().firstTrain +
+                  "</td><td>" + childSnapshot.val().minutesAway + "</td></tr>");
   
-              // Handle the errors
+              //This is where the errors are resolved
           }, function(errorObject) {
               console.log("Errors handled: " + errorObject.code);
       });
